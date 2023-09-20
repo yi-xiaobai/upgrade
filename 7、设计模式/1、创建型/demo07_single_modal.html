@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例弹窗</title>
+</head>
+<style>
+    #modal {
+        height: 200px;
+        width: 200px;
+        line-height: 200px;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <button id="open">打开弹窗</button>
+    <button id="close">关闭弹窗</button>
+</body>
+<script>
+    const Modal = (function () {
+        let instance = null
+        return function () {
+            if (!instance) {
+                instance = document.createElement('div')
+                instance.innerHTML = '我是一个modal'
+                instance.id = 'modal'
+                instance.style.display = 'none'
+                document.body.appendChild(instance)
+            }
+            return instance
+
+        }
+    })()
+
+
+    document.getElementById('open').addEventListener('click', function () {
+        const modal = new Modal()
+        modal.style.display = 'block'
+    })
+
+    document.getElementById('close').addEventListener('click', function () {
+        const modal = new Modal()
+        if (modal) {
+            modal.style.display = 'none'
+        }
+    })
+</script>
+
+</html>
