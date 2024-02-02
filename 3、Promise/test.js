@@ -1,18 +1,10 @@
-promise1 = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve(11)
-    }, 100)
-})
+const queue = [];
 
+new Promise((resolve, reject) => {
+  queue.push(resolve);
+}).then((res) => {
+  console.log("11", res);
+});
+console.log("22");
 
-promise2 = promise1.then(function (value) {
-    // return Promise.resolve(1314)
-    // return new Promise((resolve, reject) => {
-    //     resolve(1314)
-    // })
-    console.log('====');
-}, function (reason) {
-    console.log(22);
-    throw new Error('sth went wrong')
-})
-
+queue[0]("哈哈哈哈哈哈");
